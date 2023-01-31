@@ -25,7 +25,7 @@ public class TelaCadastro extends JFrame {
             String endereco = textEndereco.getText();
             String detalhe = textDetalhe.getText();
 
-            if(!isCamposValidos(nome,telefone)) {
+            if(!isCamposValidos(nome,telefone, endereco, detalhe)) {
                 JOptionPane.showMessageDialog(null, "Existem campos obrigatórios não preenchidos.", "Atenção", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 Cliente cliente = new Cliente(nome, telefone, endereco, detalhe);
@@ -56,10 +56,6 @@ public class TelaCadastro extends JFrame {
             }
         }
         return true;
-    }
-
-    public void fecharCadastro(JFrame jFrame) {
-        jFrame.setVisible(false);
     }
 
 }
