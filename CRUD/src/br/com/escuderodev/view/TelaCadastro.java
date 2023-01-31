@@ -14,9 +14,9 @@ public class TelaCadastro extends JFrame {
     public JPanel panelMain;
     private JTextField textEndereco;
     private JTextField textDetalhe;
-    private JButton sairButton;
 
     public TelaCadastro() {
+
         salvarButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
