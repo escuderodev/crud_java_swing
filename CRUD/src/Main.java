@@ -14,15 +14,5 @@ public class Main {
         telaInicial.setLocationRelativeTo(null);
         telaInicial.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-//        TelaCadastro telaCadastro = new TelaCadastro();
-//        telaCadastro.setContentPane(telaCadastro.panelMain);
-//        telaCadastro.setTitle("Cadastro de Cliente");
-//        telaCadastro.setSize(600,400);
-//        telaCadastro.setVisible(true);
-//        telaCadastro.setLocationRelativeTo(null);
-//        telaCadastro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-//        chamando métodos
-
     }
 }

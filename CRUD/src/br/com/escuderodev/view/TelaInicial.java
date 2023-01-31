@@ -8,7 +8,9 @@ public class TelaInicial extends JFrame{
     public JPanel painelPrincipal;
     private JButton cadastrarButton;
     private JButton consultarButton;
-public TelaInicial() {
+    private JButton sairButton;
+
+    public TelaInicial() {
     cadastrarButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -18,8 +20,14 @@ public TelaInicial() {
             telaCadastro.setSize(600,400);
             telaCadastro.setVisible(true);
             telaCadastro.setLocationRelativeTo(null);
-            telaCadastro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            telaCadastro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         }
     });
-}
+        sairButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+    }
 }

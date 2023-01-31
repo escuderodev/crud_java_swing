@@ -14,9 +14,10 @@ public class TelaCadastro extends JFrame {
     public JPanel panelMain;
     private JTextField textEndereco;
     private JTextField textDetalhe;
+    private JButton sairButton;
 
     public TelaCadastro() {
-    salvarButton.addActionListener(new ActionListener() {
+        salvarButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             String nome = textNome.getText();
@@ -38,7 +39,8 @@ public class TelaCadastro extends JFrame {
             }
         }
     });
-}
+
+    }
 
     private void limpaCampos() {
         textNome.setText("");
@@ -54,6 +56,10 @@ public class TelaCadastro extends JFrame {
             }
         }
         return true;
+    }
+
+    public void fecharCadastro(JFrame jFrame) {
+        jFrame.setVisible(false);
     }
 
 }
