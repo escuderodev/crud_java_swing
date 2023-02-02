@@ -9,7 +9,7 @@ public class Main {
         TelaInicial telaInicial = new TelaInicial();
         telaInicial.setContentPane(telaInicial.painelPrincipal);
         telaInicial.setTitle("Home");
-        telaInicial.setSize(600,400);
+        telaInicial.setSize(800,600);
         telaInicial.setVisible(true);
         telaInicial.setLocationRelativeTo(null);
         telaInicial.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
