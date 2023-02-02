@@ -53,7 +53,7 @@ public class ClienteDAO {
             clienteDTO.setDetalhe(rs.getString("detalhe"));
 
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "ClienteDAO - método pesqquisar" + erro);
+            JOptionPane.showMessageDialog(null, "Cliente não encontrado!");
         }
         return clienteDTO;
     }
