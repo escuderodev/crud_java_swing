@@ -1,7 +1,7 @@
 package br.com.escuderodev.view;
 
 import br.com.escuderodev.dao.ClienteDAO;
-import br.com.escuderodev.dto.Cliente;
+import br.com.escuderodev.dto.ClienteDTO;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -28,13 +28,13 @@ public class TelaCadastro extends JFrame {
             if(!isCamposValidos(nome,telefone, endereco, detalhe)) {
                 JOptionPane.showMessageDialog(null, "Existem campos obrigatórios não preenchidos.", "Atenção", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                Cliente cliente = new Cliente(nome, telefone, endereco, detalhe);
+                ClienteDTO clienteDTO = new ClienteDTO(nome, telefone, endereco, detalhe);
                 limpaCampos();
                 JOptionPane.showMessageDialog(null,"Cadastro realizado com sucesso!");
 
 //                criando a DAO e enviando os objetos criados
                 ClienteDAO clienteDAO = new ClienteDAO();
-                clienteDAO.cadastrarCliente(cliente);
+                clienteDAO.cadastrarCliente(clienteDTO);
 
             }
         }
