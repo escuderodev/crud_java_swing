@@ -6,7 +6,6 @@ import br.com.escuderodev.dto.ClienteDTO;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class TelaConsulta extends JFrame {
     public JPanel panelConsulta;
@@ -16,8 +15,10 @@ public class TelaConsulta extends JFrame {
     private JTextField txtTelefone;
     private JTextField txtEndereco;
     private JTextField txtDetalhe;
+    private JButton excluirButton;
+    private JButton alterarButton;
 
-public TelaConsulta() {
+    public TelaConsulta() {
     pesquisarButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -34,5 +35,52 @@ public TelaConsulta() {
             txtDetalhe.setText(clienteDTO.getDetalhe());
         }
     });
-}
+
+    alterarButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int idcliente = Integer.parseInt(txtCodigo.getText());
+            String nome = txtNome.getText();
+            String telefone = txtTelefone.getText();
+            String endereco = txtEndereco.getText();
+            String detalhe = txtDetalhe.getText();
+
+            ClienteDTO clienteDTO = new ClienteDTO();
+            clienteDTO.setIdcliente(idcliente);
+            clienteDTO.setNome(nome);
+            clienteDTO.setTelefone(telefone);
+            clienteDTO.setEndereco(endereco);
+            clienteDTO.setDetalhe(detalhe);
+
+            ClienteDAO clienteDAO = new ClienteDAO();
+            clienteDAO.alterarCliente(clienteDTO);
+
+            limpaCampos();
+
+            }
+        });
+    excluirButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int idcliente = Integer.parseInt(txtCodigo.getText());
+
+            ClienteDTO clienteDTO = new ClienteDTO();
+            clienteDTO.setIdcliente(idcliente);
+
+            ClienteDAO clienteDAO = new ClienteDAO();
+            clienteDAO.excluirCliente(clienteDTO);
+
+            limpaCampos();
+
+            }
+        });
+    }
+
+    private void limpaCampos() {
+        txtCodigo.setText("");
+        txtNome.setText("");
+        txtTelefone.setText("");
+        txtEndereco.setText("");
+        txtDetalhe.setText("");
+    }
 }

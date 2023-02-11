@@ -57,4 +57,44 @@ public class ClienteDAO {
         }
         return clienteDTO;
     }
+
+    public void alterarCliente(ClienteDTO clienteDTO) {
+        String sql = "update cliente set nome = ?, telefone = ?, endereco = ?, detalhe = ? where idcliente = ?";
+    //        Preparando a conexão e envio dos dados
+        conn = new ConexaoDAO().conectaBD();
+
+        try {
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, clienteDTO.getNome());
+            pstm.setString(2, clienteDTO.getTelefone());
+            pstm.setString(3, clienteDTO.getEndereco());
+            pstm.setString(4, clienteDTO.getDetalhe());
+            pstm.setInt(5, clienteDTO.getIdcliente());
+
+            pstm.execute();
+            pstm.close();
+            JOptionPane.showMessageDialog(null,"Cadastro alterado com sucesso!");
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null,"ClienteDAO - método alterar" + erro);
+        }
+    }
+
+    public void excluirCliente(ClienteDTO clienteDTO) {
+        String sql = "delete from cliente where idcliente = ?";
+        //        Preparando a conexão e envio dos dados
+        conn = new ConexaoDAO().conectaBD();
+
+        try {
+            pstm = conn.prepareStatement(sql);
+            pstm.setInt(1, clienteDTO.getIdcliente());
+
+            pstm.execute();
+            pstm.close();
+            JOptionPane.showMessageDialog(null,"Cadastro excluído com sucesso!");
+
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null,"ClienteDAO - método deletar" + erro);
+        }
+    }
 }
