@@ -35,18 +35,17 @@ public class ClienteDAO {
         }
     }
 
-    public ClienteDTO pesquisarCliente(int idcliente) {
-        String sql = "select * from cliente where idcliente = ?";
+    public ClienteDTO pesquisarCliente(String telefone) {
+        String sql = "select * from cliente where telefone = ?";
         ClienteDTO clienteDTO = new ClienteDTO();
         conn = new ConexaoDAO().conectaBD();
 
         try {
             pstm = conn.prepareStatement(sql);
-            pstm.setInt(1, idcliente);
+            pstm.setString(1, telefone);
             rs = pstm.executeQuery();
 
             rs.first();
-            clienteDTO.setIdcliente(idcliente);
             clienteDTO.setNome(rs.getString("nome"));
             clienteDTO.setTelefone(rs.getString("telefone"));
             clienteDTO.setEndereco(rs.getString("endereco"));
@@ -59,7 +58,7 @@ public class ClienteDAO {
     }
 
     public void alterarCliente(ClienteDTO clienteDTO) {
-        String sql = "update cliente set nome = ?, telefone = ?, endereco = ?, detalhe = ? where idcliente = ?";
+        String sql = "update cliente set nome = ?, telefone = ?, endereco = ?, detalhe = ? where telefone = ?";
     //        Preparando a conexão e envio dos dados
         conn = new ConexaoDAO().conectaBD();
 
@@ -69,7 +68,7 @@ public class ClienteDAO {
             pstm.setString(2, clienteDTO.getTelefone());
             pstm.setString(3, clienteDTO.getEndereco());
             pstm.setString(4, clienteDTO.getDetalhe());
-            pstm.setInt(5, clienteDTO.getIdcliente());
+            pstm.setString(5, clienteDTO.getTelefone());
 
             pstm.execute();
             pstm.close();
@@ -81,13 +80,13 @@ public class ClienteDAO {
     }
 
     public void excluirCliente(ClienteDTO clienteDTO) {
-        String sql = "delete from cliente where idcliente = ?";
+        String sql = "delete from cliente where telefone = ?";
         //        Preparando a conexão e envio dos dados
         conn = new ConexaoDAO().conectaBD();
 
         try {
             pstm = conn.prepareStatement(sql);
-            pstm.setInt(1, clienteDTO.getIdcliente());
+            pstm.setString(1, clienteDTO.getTelefone());
 
             if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o cadastro?", "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
                 pstm.execute();

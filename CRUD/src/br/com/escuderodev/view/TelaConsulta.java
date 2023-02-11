@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class TelaConsulta extends JFrame {
     public JPanel panelConsulta;
-    private JTextField txtCodigo;
+    private JTextField txtPesqTelefone;
     private JButton pesquisarButton;
     private JTextField txtNome;
     private JTextField txtTelefone;
@@ -22,11 +22,11 @@ public class TelaConsulta extends JFrame {
     pesquisarButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            int idcliente = Integer.parseInt(txtCodigo.getText());
+            String telefone = txtPesqTelefone.getText();
             ClienteDAO clienteDAO = new ClienteDAO();
 
 //            chamando metodo para pesquisar no banco
-            ClienteDTO clienteDTO = clienteDAO.pesquisarCliente(idcliente);
+            ClienteDTO clienteDTO = clienteDAO.pesquisarCliente(telefone);
 
 //            carregando os dados retornados na tela
             txtNome.setText(clienteDTO.getNome());
@@ -39,14 +39,12 @@ public class TelaConsulta extends JFrame {
     alterarButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            int idcliente = Integer.parseInt(txtCodigo.getText());
             String nome = txtNome.getText();
             String telefone = txtTelefone.getText();
             String endereco = txtEndereco.getText();
             String detalhe = txtDetalhe.getText();
 
             ClienteDTO clienteDTO = new ClienteDTO();
-            clienteDTO.setIdcliente(idcliente);
             clienteDTO.setNome(nome);
             clienteDTO.setTelefone(telefone);
             clienteDTO.setEndereco(endereco);
@@ -62,10 +60,10 @@ public class TelaConsulta extends JFrame {
     excluirButton.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            int idcliente = Integer.parseInt(txtCodigo.getText());
+            String telefone = txtPesqTelefone.getText();
 
             ClienteDTO clienteDTO = new ClienteDTO();
-            clienteDTO.setIdcliente(idcliente);
+            clienteDTO.setTelefone(telefone);
 
             ClienteDAO clienteDAO = new ClienteDAO();
             clienteDAO.excluirCliente(clienteDTO);
@@ -77,7 +75,7 @@ public class TelaConsulta extends JFrame {
     }
 
     private void limpaCampos() {
-        txtCodigo.setText("");
+        txtPesqTelefone.setText("");
         txtNome.setText("");
         txtTelefone.setText("");
         txtEndereco.setText("");
