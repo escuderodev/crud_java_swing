@@ -89,9 +89,13 @@ public class ClienteDAO {
             pstm = conn.prepareStatement(sql);
             pstm.setInt(1, clienteDTO.getIdcliente());
 
-            pstm.execute();
-            pstm.close();
-            JOptionPane.showMessageDialog(null,"Cadastro excluído com sucesso!");
+            if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o cadastro?", "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == 0) {
+                pstm.execute();
+                pstm.close();
+                JOptionPane.showMessageDialog(null,"Cadastro excluído com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(null,"Nenhuma exclusão realizada!");
+            }
 
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null,"ClienteDAO - método deletar" + erro);
